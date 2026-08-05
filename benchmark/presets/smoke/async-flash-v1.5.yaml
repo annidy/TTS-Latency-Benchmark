@@ -1,0 +1,10 @@
+schema_version: 2
+suite: {id: smoke-async-flash-v1.5, description: Async Flash 1.5 HTTP and persistent WS smoke}
+catalog: [../catalog/async_voice.yaml]
+targets:
+  - model: async.flash-v1.5
+    transports: [http, websocket]
+execution: {profiles: [{id: warm, connection_mode: persistent, provider_execution: serial, warmup_runs: 1, repetitions: 1}]}
+texts: {ref: ../texts/smoke-en.yaml}
+clients: [{id: local, region_env: TTFA_CLIENT_REGION, runner: {kind: local}}]
+outputs: {base_dir: outputs/runs}

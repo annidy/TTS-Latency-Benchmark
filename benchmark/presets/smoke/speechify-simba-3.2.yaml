@@ -1,0 +1,8 @@
+schema_version: 2
+suite: {id: smoke-speechify-simba-3.2, description: Speechify Simba 3.2 HTTP smoke}
+catalog: [../catalog/speechify.yaml]
+targets: [{model: speechify.simba-3.2, transport: http}]
+execution: {profiles: [{id: warm, connection_mode: persistent, provider_execution: serial, warmup_runs: 1, repetitions: 1}]}
+texts: {ref: ../texts/smoke-en.yaml}
+clients: [{id: local, region_env: TTFA_CLIENT_REGION, runner: {kind: local}}]
+outputs: {base_dir: outputs/runs}

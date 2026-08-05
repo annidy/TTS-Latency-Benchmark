@@ -1,0 +1,18 @@
+models:
+  cartesia.sonic-3.5:
+    credentials: {api_key_env: CARTESIA_API_KEY}
+    model: {id: sonic-3.5-2026-05-04, track: realtime, tier: standard}
+    voice: {mode: provider_voice_id, value_env: CARTESIA_VOICE_ID, source: catalog}
+    audio: {container: raw, encoding: pcm_s16le, sample_rate_hz: 24000, channels: 1}
+    request: {input_mode: complete_text_flush, api_version: '2026-03-01', language: en, timeout_s: 60}
+    transports:
+      http:
+        endpoint:
+          url: https://api.cartesia.ai/tts/bytes
+          service_region: origin-selected
+          region_policy: origin_routed
+      websocket:
+        endpoint:
+          url: wss://api.cartesia.ai/tts/websocket
+          service_region: origin-selected
+          region_policy: origin_routed

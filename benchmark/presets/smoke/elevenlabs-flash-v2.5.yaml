@@ -1,0 +1,10 @@
+schema_version: 2
+suite: {id: smoke-elevenlabs-flash-v2.5, description: ElevenLabs Flash v2.5 HTTP and persistent WS smoke}
+catalog: [../catalog/elevenlabs.yaml]
+targets:
+  - model: elevenlabs.flash-v2.5
+    transports: [http, websocket]
+execution: {profiles: [{id: warm, connection_mode: persistent, provider_execution: serial, warmup_runs: 1, repetitions: 1}]}
+texts: {ref: ../texts/smoke-en.yaml}
+clients: [{id: local, region_env: TTFA_CLIENT_REGION, runner: {kind: local}}]
+outputs: {base_dir: outputs/runs}

@@ -1,0 +1,19 @@
+models:
+  fish-audio.s2.1-pro:
+    credentials: {api_key_env: FISH_AUDIO_API_KEY}
+    model: {id: s2.1-pro-free, track: quality, tier: pro}
+    voice: {mode: provider_voice_id, value_env: FISH_AUDIO_VOICE_ID, source: catalog}
+    audio: {format: pcm, encoding: pcm_s16le, sample_rate_hz: 24000, channels: 1}
+    request: {input_mode: complete_text_flush, chunk_length: 100, latency: low, timeout_s: 60}
+    transports:
+      http:
+        endpoint:
+          url: https://api.fish.audio/v1/tts
+          service_region: undisclosed
+          region_policy: provider_managed
+      websocket:
+        endpoint:
+          url: wss://api.fish.audio/v1/tts/live
+          service_region: undisclosed
+          region_policy: provider_managed
+        request: {turn_idle_timeout_s: 1.5}

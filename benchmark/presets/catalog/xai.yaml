@@ -1,0 +1,21 @@
+models:
+  xai.tts:
+    credentials: {api_key_env: XAI_API_KEY}
+    model: {id: xai-tts, track: realtime, tier: standard}
+    voice: {mode: provider_voice_id, value_env: XAI_VOICE_ID, source: catalog}
+    audio: {encoding: pcm_s16le, sample_rate_hz: 24000, channels: 1}
+    request: {input_mode: complete_text_flush, language: en, text_normalization: false, timeout_s: 60}
+    transports:
+      http:
+        endpoint:
+          url: https://api.x.ai/v1/tts
+          service_region: us-east-1
+          region_policy: fixed_service_region
+        audio: {encoding: mp3, sample_rate_hz: 24000, channels: 1}
+      websocket:
+        endpoint:
+          url: wss://api.x.ai/v1/tts
+          service_region: us-east-1
+          region_policy: fixed_service_region
+        audio: {encoding: pcm_s16le, sample_rate_hz: 24000, channels: 1}
+        request: {optimize_streaming_latency: 1}

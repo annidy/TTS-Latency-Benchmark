@@ -1,0 +1,18 @@
+models:
+  async.flash-v1.5:
+    credentials: {api_key_env: ASYNC_API_KEY}
+    model: {id: async_flash_v1.5, track: realtime, tier: standard}
+    voice: {mode: provider_voice_id, value_env: ASYNC_VOICE_ID, source: catalog}
+    audio: {container: raw, encoding: pcm_f32le, sample_rate_hz: 44100, channels: 1, sample_width_bytes: 4}
+    request: {input_mode: complete_text_flush, timeout_s: 60}
+    transports:
+      http:
+        endpoint:
+          url: https://api.async.com/text_to_speech/streaming
+          service_region: undisclosed
+          region_policy: provider_managed
+      websocket:
+        endpoint:
+          url: wss://api.async.com/text_to_speech/websocket/ws
+          service_region: undisclosed
+          region_policy: provider_managed

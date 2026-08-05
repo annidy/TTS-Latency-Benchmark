@@ -1,0 +1,10 @@
+schema_version: 2
+suite: {id: smoke-cartesia-sonic-3.5, description: Cartesia Sonic 3.5 HTTP and persistent WS smoke}
+catalog: [../catalog/cartesia.yaml]
+targets:
+  - model: cartesia.sonic-3.5
+    transports: [http, websocket]
+execution: {profiles: [{id: warm, connection_mode: persistent, provider_execution: serial, warmup_runs: 1, repetitions: 1}]}
+texts: {ref: ../texts/smoke-en.yaml}
+clients: [{id: local, region_env: TTFA_CLIENT_REGION, runner: {kind: local}}]
+outputs: {base_dir: outputs/runs}

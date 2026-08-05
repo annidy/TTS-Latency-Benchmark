@@ -1,0 +1,39 @@
+schema_version: 2
+suite:
+  id: diagnostic-all-http
+  description: HTTP transport diagnostics for every supported model
+
+catalog:
+  - ../catalog/async_voice.yaml
+  - ../catalog/breezeblue.yaml
+  - ../catalog/cartesia.yaml
+  - ../catalog/elevenlabs.yaml
+  - ../catalog/fish_audio.yaml
+  - ../catalog/inworld.yaml
+  - ../catalog/speechify.yaml
+  - ../catalog/xai.yaml
+
+targets:
+  - {model: async.flash-v1.5, transport: http}
+  - {model: breezeblue.breeze-tts-2, transport: http}
+  - {model: cartesia.sonic-3.5, transport: http}
+  - {model: elevenlabs.flash-v2.5, transport: http}
+  - {model: elevenlabs.v3, transport: http}
+  - {model: fish-audio.s2.1-pro, transport: http}
+  - {model: inworld.tts-2, transport: http}
+  - {model: speechify.simba-3.2, transport: http}
+  - {model: xai.tts, transport: http}
+
+execution:
+  profiles:
+    - id: diagnostic-all-http
+      connection_mode: persistent
+      iteration_order: provider_major
+      provider_order: configured
+      provider_execution: serial
+      warmup_runs: 1
+      repetitions: 3
+
+texts: {ref: ../texts/smoke-en.yaml}
+clients: [{id: local, region_env: TTFA_CLIENT_REGION, runner: {kind: local}}]
+outputs: {base_dir: outputs/runs}

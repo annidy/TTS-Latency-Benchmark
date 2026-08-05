@@ -1,0 +1,5 @@
+texts:
+  - id: smoke-en
+    language: en
+    profile: smoke
+    text: The quick brown fox jumps over the lazy dog.

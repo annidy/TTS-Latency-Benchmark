@@ -1,0 +1,33 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "tts-latency-benchmark"
+version = "0.1.0"
+description = "Provider-neutral local benchmark for end-to-end TTS startup latency"
+readme = "README.md"
+requires-python = ">=3.11"
+keywords = ["tts", "latency", "ttfb", "ttfa", "benchmark"]
+dependencies = [
+  "httpx[http2]>=0.27",
+  "msgpack>=1.1",
+  "numpy>=1.26",
+  "python-dotenv>=1.0",
+  "PyYAML>=6.0",
+  "websockets>=13.0",
+]
+
+[project.urls]
+Repository = "https://github.com/breezeblue-ai/TTS-Latency-Benchmark"
+Issues = "https://github.com/breezeblue-ai/TTS-Latency-Benchmark/issues"
+
+[project.scripts]
+ttfa-bench = "benchmark.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["benchmark"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"

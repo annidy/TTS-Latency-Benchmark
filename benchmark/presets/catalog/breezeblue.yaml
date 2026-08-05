@@ -1,0 +1,23 @@
+models:
+  breezeblue.breeze-tts-2:
+    credentials: {api_key_env: BREEZEBLUE_API_KEY}
+    model: {id: breeze-tts-2, track: realtime, tier: low_latency}
+    voice: {mode: provider_voice_id, value_env: BREEZEBLUE_VOICE_ID, source: catalog}
+    request: {input_mode: complete_text_flush, auth_header: xi-api-key, timeout_s: 60}
+    transports:
+      http:
+        endpoint:
+          url: https://api.breeze.blue/v1/text-to-speech/{voice_id}
+          service_region: us-central1
+          region_policy: fixed_gateway
+        audio: {encoding: mp3, sample_rate_hz: 44100, channels: 1}
+      websocket:
+        endpoint:
+          url: wss://api.breeze.blue/v1/text-to-speech/{voice_id}/stream-input
+          service_region: us-central1
+          region_policy: fixed_gateway
+        audio: {encoding: pcm_s16le, sample_rate_hz: 24000, channels: 1}
+        request:
+          language_code: en
+          enable_logging: false
+          inactivity_timeout_seconds: 30

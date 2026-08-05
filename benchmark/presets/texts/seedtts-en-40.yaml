@@ -1,0 +1,49 @@
+# Text prompts originate from Mozilla Common Voice (CC0-1.0), selected via the
+# Seed-TTS English evaluation metadata distributed at
+# https://drive.google.com/file/d/1GlSjVfSHkW3-leKKBlfrjuuTGqQ_xaLP/edit
+# See the Dataset Source section in README.md for attribution and selection details.
+# Selection: read the target-text column (field 4) from
+# seedtts_testset/en/meta.lst, keep the first occurrence of each distinct text,
+# then sort by character count descending with stable ties by source row and
+# take the first 40. The checked-in order is longest to shortest.
+texts:
+  - {id: seedtts-en-001, language: en, profile: seedtts-en-longest, text: "Before guns were invented, armies had to throw bullets at each other and if a bullet touched you, you had to sit out until the next war."}
+  - {id: seedtts-en-002, language: en, profile: seedtts-en-longest, text: "Contrary to common belief, children won't gain computer literacy, if you just hand them tablet computers and smartphones."}
+  - {id: seedtts-en-003, language: en, profile: seedtts-en-longest, text: "He paused, looked back at the house, but then pocketed the keys, opened the gate and strode down the path quickly."}
+  - {id: seedtts-en-004, language: en, profile: seedtts-en-longest, text: "There is no universal definition of intelligence, but everyone agrees that the ability of learning belongs to it."}
+  - {id: seedtts-en-005, language: en, profile: seedtts-en-longest, text: "I'm never more aware of a room's acoustics than when I'm trying to enjoy a snack I have no intention of sharing."}
+  - {id: seedtts-en-006, language: en, profile: seedtts-en-longest, text: 'The transcript distinguishes between "foundational credits" necessary for graduation and "advanced credits".'}
+  - {id: seedtts-en-007, language: en, profile: seedtts-en-longest, text: "Without understanding the actual physics, some animals exploit total internal reflection for catching fish."}
+  - {id: seedtts-en-008, language: en, profile: seedtts-en-longest, text: "Modi only attended Hindu religious ceremonies, and had prominent associations with Hindu religious leaders."}
+  - {id: seedtts-en-009, language: en, profile: seedtts-en-longest, text: "Aside from national championships, individual schools worked together to stage annual state championships."}
+  - {id: seedtts-en-010, language: en, profile: seedtts-en-longest, text: "He contributed donations to the new Birmingham University following representations by Joseph Chamberlain."}
+  - {id: seedtts-en-011, language: en, profile: seedtts-en-longest, text: "Many reviewers complained of painful and frustrating physiological symptoms when playing the Virtual Boy."}
+  - {id: seedtts-en-012, language: en, profile: seedtts-en-longest, text: "More visible enforcement of traffic regulations on motorists, bicyclists, and pedestrians has commenced."}
+  - {id: seedtts-en-013, language: en, profile: seedtts-en-longest, text: "He was also involved in Canadian International Development Agency programs to develop fisheries abroard."}
+  - {id: seedtts-en-014, language: en, profile: seedtts-en-longest, text: "In testimony to investigators, the page described the relationship as consensual and not intimidating."}
+  - {id: seedtts-en-015, language: en, profile: seedtts-en-longest, text: "She repealed all her brother's religious laws and imprisoned the country's leading Protestant clerics."}
+  - {id: seedtts-en-016, language: en, profile: seedtts-en-longest, text: 'The last lineage diversified rapidly, and became the ancestor of most Australian "Atriplex" species.'}
+  - {id: seedtts-en-017, language: en, profile: seedtts-en-longest, text: "Try to make eye contact with a stranger on the bus, and hold it for five seconds, without speaking."}
+  - {id: seedtts-en-018, language: en, profile: seedtts-en-longest, text: 'The Executive Board "overturned" this recommendation and the lightweight rowing has been continued.'}
+  - {id: seedtts-en-019, language: en, profile: seedtts-en-longest, text: "These drawings are usually outline drawings that are quite expressionless and somber in appearance."}
+  - {id: seedtts-en-020, language: en, profile: seedtts-en-longest, text: "This marks the culmination of the Physical Education Program, in which every student participates."}
+  - {id: seedtts-en-021, language: en, profile: seedtts-en-longest, text: "This type of mount is used in Transit telescopes, designed for precision astronomical measurement."}
+  - {id: seedtts-en-022, language: en, profile: seedtts-en-longest, text: "It now has five chapters: Butterfield Trail, Magazine Mountain, Ozark, Razorback and Cornerstone."}
+  - {id: seedtts-en-023, language: en, profile: seedtts-en-longest, text: 'He is credited as having undertaken "the first major investigation of British traditional drama".'}
+  - {id: seedtts-en-024, language: en, profile: seedtts-en-longest, text: "Excessive efforts to control or exploit agents of influence can also have negative consequences."}
+  - {id: seedtts-en-025, language: en, profile: seedtts-en-longest, text: "They can share their visualizations, then check their level of detail against the illustrations."}
+  - {id: seedtts-en-026, language: en, profile: seedtts-en-longest, text: "Errors from the model and adding accumulate, which eventually subtracted from the initial value."}
+  - {id: seedtts-en-027, language: en, profile: seedtts-en-longest, text: "To encourage skill acquisition, the program uses the child's particular motivation for learning."}
+  - {id: seedtts-en-028, language: en, profile: seedtts-en-longest, text: "In New Zealand, the rank of superintendent is above inspector and below assistant commissioner."}
+  - {id: seedtts-en-029, language: en, profile: seedtts-en-longest, text: "These two agencies co-operate in aspects of law enforcement, including their joint marine unit."}
+  - {id: seedtts-en-030, language: en, profile: seedtts-en-longest, text: "As research continued, the protective effect of fluoride against dental decay was demonstrated."}
+  - {id: seedtts-en-031, language: en, profile: seedtts-en-longest, text: "Gordon Battelle, an Ohio native who sought to introduce a resolution for gradual emancipation."}
+  - {id: seedtts-en-032, language: en, profile: seedtts-en-longest, text: "Comer's administration applied the increases in spending for education only of white students."}
+  - {id: seedtts-en-033, language: en, profile: seedtts-en-longest, text: "Copper wire provides an easily manufactured, general purpose voice coil, at a reasonable cost."}
+  - {id: seedtts-en-034, language: en, profile: seedtts-en-longest, text: "These two methods allow moisture to penetrate the tough outer casing, stimulating germination."}
+  - {id: seedtts-en-035, language: en, profile: seedtts-en-longest, text: "It features three unique paths to select, influencing story development, gameplay and puzzles."}
+  - {id: seedtts-en-036, language: en, profile: seedtts-en-longest, text: "The film was an average commercial success, but earned critical acclaim from award committees."}
+  - {id: seedtts-en-037, language: en, profile: seedtts-en-longest, text: "Another subgenre is feminist utopias and the overlapping category of feminist science fiction."}
+  - {id: seedtts-en-038, language: en, profile: seedtts-en-longest, text: "They climbed a tall crane without securing themselves and filmed it for their YouTube channel."}
+  - {id: seedtts-en-039, language: en, profile: seedtts-en-longest, text: "Using his engineering knowledge, Gallagher studied leverage, and how it applied to wrestling."}
+  - {id: seedtts-en-040, language: en, profile: seedtts-en-longest, text: "In the aftermath of this event, the National Aeronautics and Space Administration was formed."}

@@ -1,0 +1,13 @@
+models:
+  speechify.simba-3.2:
+    credentials: {api_key_env: SPEECHIFY_API_KEY}
+    model: {id: simba-3.2, track: realtime, tier: recommended}
+    voice: {mode: provider_voice_id, value_env: SPEECHIFY_VOICE_ID, source: catalog}
+    audio: {encoding: pcm_s16le, sample_rate_hz: 24000, channels: 1}
+    request: {input_mode: complete_text, language: en-US, api_version: '2026-06-25', timeout_s: 60}
+    transports:
+      http:
+        endpoint:
+          url: https://api.speechify.ai/v1/audio/stream
+          service_region: undisclosed
+          region_policy: provider_managed

@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.py[cod]
+.env*
+!.env.example
+/outputs/
+/dist/
+*.wav
+*.pcm
+*.mp3

@@ -1,0 +1,31 @@
+models:
+  elevenlabs.flash-v2.5:
+    credentials: {api_key_env: ELEVENLABS_API_KEY}
+    model: {id: eleven_flash_v2_5, track: realtime, tier: low_latency}
+    voice: {mode: provider_voice_id, value_env: ELEVENLABS_VOICE_ID, source: catalog}
+    audio: {encoding: pcm_s16le, output_format: pcm_24000, sample_rate_hz: 24000, channels: 1}
+    request: {input_mode: complete_text_flush, language_code: en, text_normalization: "off", timeout_s: 60}
+    transports:
+      http:
+        endpoint:
+          url: https://api.elevenlabs.io/v1/text-to-speech/{voice_id}/stream
+          service_region: us
+          region_policy: default_us
+      websocket:
+        endpoint:
+          url: wss://api.elevenlabs.io/v1/text-to-speech/{voice_id}/multi-stream-input
+          service_region: us
+          region_policy: default_us
+        request: {auto_mode: true, sync_alignment: false}
+  elevenlabs.v3:
+    credentials: {api_key_env: ELEVENLABS_API_KEY}
+    model: {id: eleven_v3, track: quality, tier: expressive}
+    voice: {mode: provider_voice_id, value_env: ELEVENLABS_VOICE_ID, source: catalog}
+    audio: {encoding: pcm_s16le, output_format: pcm_24000, sample_rate_hz: 24000, channels: 1}
+    request: {input_mode: complete_text, language_code: en, text_normalization: "off", timeout_s: 60}
+    transports:
+      http:
+        endpoint:
+          url: https://api.elevenlabs.io/v1/text-to-speech/{voice_id}/stream
+          service_region: us
+          region_policy: default_us

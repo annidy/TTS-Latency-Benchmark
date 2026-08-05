@@ -1,0 +1,6 @@
+httpx[http2]>=0.27
+msgpack>=1.1
+numpy>=1.26
+python-dotenv>=1.0
+PyYAML>=6.0
+websockets>=13.0

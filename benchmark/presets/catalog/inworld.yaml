@@ -1,0 +1,23 @@
+models:
+  inworld.tts-2:
+    credentials: {api_key_env: INWORLD_API_KEY}
+    model: {id: inworld-tts-2, track: quality, tier: quality_preview}
+    voice: {mode: provider_voice_id, value_env: INWORLD_VOICE_ID, source: catalog}
+    request: {input_mode: complete_text_flush, language: en-US, text_normalization: "OFF", delivery_mode: BALANCED, timeout_s: 60}
+    transports:
+      http:
+        endpoint:
+          url: https://api.inworld.ai/tts/v1/voice
+          service_region: undisclosed
+          region_policy: provider_managed
+        audio: {encoding: wav, wire_encoding: LINEAR16, sample_rate_hz: 24000, channels: 1}
+      websocket:
+        endpoint:
+          url: wss://api.inworld.ai/tts/v1/voice:streamBidirectional
+          service_region: undisclosed
+          region_policy: provider_managed
+        audio: {encoding: pcm_s16le, wire_encoding: PCM, sample_rate_hz: 24000, channels: 1}
+        request:
+          auto_mode: true
+          timestamp_type: TIMESTAMP_TYPE_UNSPECIFIED
+          timestamp_transport_strategy: ASYNC

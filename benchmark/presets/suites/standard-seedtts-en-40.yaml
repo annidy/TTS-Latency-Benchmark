@@ -1,0 +1,41 @@
+schema_version: 2
+suite:
+  id: standard-seedtts-en-40
+  description: Standard local TTFA benchmark using 40 shared Seed-TTS English prompts
+
+catalog:
+  - ../catalog/async_voice.yaml
+  - ../catalog/breezeblue.yaml
+  - ../catalog/cartesia.yaml
+  - ../catalog/elevenlabs.yaml
+  - ../catalog/fish_audio.yaml
+  - ../catalog/inworld.yaml
+  - ../catalog/speechify.yaml
+  - ../catalog/xai.yaml
+
+# One default protocol per model. Prefer a warmed WebSocket when
+# independent turns are stable; otherwise use a warmed persistent HTTP pool.
+targets:
+  - {model: async.flash-v1.5, transport: websocket}
+  - {model: breezeblue.breeze-tts-2, transport: websocket}
+  - {model: cartesia.sonic-3.5, transport: websocket}
+  - {model: elevenlabs.flash-v2.5, transport: websocket}
+  - {model: elevenlabs.v3, transport: http}
+  - {model: fish-audio.s2.1-pro, transport: http}
+  - {model: inworld.tts-2, transport: websocket}
+  - {model: speechify.simba-3.2, transport: http}
+  - {model: xai.tts, transport: websocket}
+
+execution:
+  profiles:
+    - id: standard-seedtts-en-40
+      connection_mode: persistent
+      # Requests stay serial within each model; different models run concurrently.
+      iteration_order: interleaved
+      provider_execution: parallel
+      warmup_runs: 3
+      repetitions: 1
+
+texts: {ref: ../texts/seedtts-en-40.yaml}
+clients: [{id: local, region_env: TTFA_CLIENT_REGION, runner: {kind: local}}]
+outputs: {base_dir: outputs/runs}
