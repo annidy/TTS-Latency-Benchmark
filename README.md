@@ -69,6 +69,10 @@ BREEZEBLUE_VOICE_ID=your_voice_id
 API keys are intentionally omitted from this repository. Do not commit `.env.local` or
 put secrets directly into suite and catalog YAML files.
 
+## Voice ID Refrence
+1. [brezee blue](https://docs.breezeblue.ai/api-reference/voices/list-voices?playground=open)
+2. [fish audio](https://docs.fish.audio/developer-guide/getting-started/quickstart#customizing-your-voice)
+
 ## Validate The Installation
 
 List the supported public model IDs:

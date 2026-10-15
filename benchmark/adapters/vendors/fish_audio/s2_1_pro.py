@@ -13,4 +13,5 @@ class FishAudioS21Pro(FishAudioBase):
 
     @property
     def model_id(self) -> str:
-        return str(self.setting("model.id", "s2.1-pro-free"))
+        # https://docs.fish.audio/overview/capabilities#models
+        return str(self.setting("model.id", "s2.1-pro"))

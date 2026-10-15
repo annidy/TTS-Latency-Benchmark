@@ -159,6 +159,15 @@ def write_run_artifacts(
         ),
         encoding="utf-8",
     )
+    (run_dir / "report_zh.md").write_text(
+        _markdown_report_zh(
+            manifest,
+            rows,
+            dumbbell_path.relative_to(run_dir).as_posix(),
+            plot_links,
+        ),
+        encoding="utf-8",
+    )
     return rows
 
 
@@ -265,6 +274,66 @@ def _markdown_report(
                 lines.extend([f"### {label}", "", f"![{label} box plot]({boxplots[metric]})", ""])
     return "\n".join(lines)
 
+def _markdown_report_zh(
+    manifest: dict[str, Any],
+    rows: list[dict[str, Any]],
+    dumbbell: str | None = None,
+    boxplots: dict[str, str] | None = None,
+) -> str:
+    lines = [
+        f"# TTFA 基准测试：{manifest['run_id']}",
+        "",
+        f"- 开始时间：`{manifest['started_at']}`",
+        f"- 执行顺序种子：`{manifest['seed']}`（不控制模型生成）",
+        f"- Schema：`{manifest['schema_version']}`",
+        "",
+        "| 模型 | 协议 | 区域 | 成功率 | TTFB p50 | TTFB p95 | 静音 p50 | 静音 p95 | TTFA p50 | TTFA p95 |",
+        "|---|---|---|---:|---:|---:|---:|---:|---:|---:|",
+    ]
+    display_rows = _preferred_report_rows(rows)
+    for row in sorted(
+        display_rows,
+        key=lambda item: (item["client_id"], item["profile_id"], item["ttfa_p50_ms"] or math.inf),
+    ):
+        lines.append(
+            "| {model} | {protocol} | {client_region} | {success} | {ttfb_p50} | {ttfb_p95} | {silence_p50} | {silence_p95} | {ttfa_p50} | {ttfa_p95} |".format(
+                **row,
+                model=row["provider_id"].rsplit("/", 1)[0],
+                success=f"{row['successes']}/{row['attempts']} ({row['success_rate']:.0%})",
+                ttfb_p50=_ms(row["ttfb_p50_ms"]),
+                ttfb_p95=_ms(row["ttfb_p95_ms"]),
+                silence_p50=_ms(row["initial_silence_p50_ms"]),
+                silence_p95=_ms(row["initial_silence_p95_ms"]),
+                ttfa_p50=_ms(row["ttfa_p50_ms"]),
+                ttfa_p95=_ms(row["ttfa_p95_ms"]),
+            )
+        )
+    lines.extend(
+        [
+            "",
+            "展示表在同一模型同时有 WebSocket 与 HTTP 结果时优先保留持久 WebSocket；仅当 WebSocket 不可用时才展示 HTTP。",
+            "TTFB 为首个非空音频块到达时间，元数据与控制消息不计入；TTFA 为首个音频包到达时间。",
+            "完整指标与协议元数据见 `summary.json`、`summary.csv` 和 `samples.jsonl`。",
+            "",
+        ]
+    )
+    if dumbbell:
+        lines.extend(
+            [
+                "## 延迟对比",
+                "",
+                "模型按 TTFA p50 从上到下排序；数值越低越快。",
+                "",
+                f"![TTFB p50、TTFA p50 与 TTFA p95]({dumbbell})",
+                "",
+            ]
+        )
+    if boxplots:
+        lines.extend(["## 延迟分布", ""])
+        for metric, label in (("ttfb", "TTFB"), ("silence", "静音"), ("ttfa", "TTFA")):
+            if metric in boxplots:
+                lines.extend([f"### {label}", "", f"![{label} 箱线图]({boxplots[metric]})", ""])
+    return "\n".join(lines)
 
 def _preferred_report_samples(samples: list[SampleResult]) -> list[SampleResult]:
     def key(sample: SampleResult) -> tuple[str, str, str]:
